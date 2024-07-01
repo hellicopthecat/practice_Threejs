@@ -2,6 +2,7 @@ import Stats from "./node_modules/three/examples/jsm/libs/stats.module.js";
 import * as THREE from "./node_modules/three/build/three.module.min.js";
 import * as dat from "./node_modules/dat.gui/build/dat.gui.module.js";
 
+//화면의 종횡비가 변화하기 때문에 보여주고자하는 것들은 함수의 외부로 이동해 다른 함수에서도 사용할 수 있게 해준다.
 let camera;
 let scene;
 let renderer;
@@ -108,6 +109,7 @@ function init() {
   canvas.appendChild(renderer.domElement);
   renderScene();
 }
+//반응형으로 만들기
 function onResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
