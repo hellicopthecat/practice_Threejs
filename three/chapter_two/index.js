@@ -4,6 +4,9 @@ import dat from "dat.gui";
 function init() {
   const stats = initStats();
   const scene = new THREE.Scene();
+  // scene.fog = new THREE.Fog(0xcccccc, 0.015, 100);
+  scene.fog = new THREE.FogExp2(0xffffff, 0.01);
+  scene.overrideMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
   const camera = new THREE.PerspectiveCamera(
     45,
     window.innerWidth / window.innerHeight,
