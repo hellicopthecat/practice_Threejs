@@ -47,6 +47,20 @@ scene.add(cube);
 cube.rotation.x = -Math.PI / 2;
 cube.receiveShadow = true;
 
+const floorGeo = new THREE.PlaneGeometry(100, 100);
+const floorMat = new THREE.MeshStandardMaterial({
+  color: 0x888888,
+  roughness: 0.8,
+  metalness: 0,
+});
+
+const floor = new THREE.Mesh(floorGeo, floorMat);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -10;
+floor.receiveShadow = true;
+
+scene.add(floor);
+
 const ambi = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambi);
 const light = new THREE.DirectionalLight(0xffffff, 3);
@@ -57,8 +71,12 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 light.castShadow = true;
 light.shadow.mapSize.set(1024, 1024);
+light.shadow.camera.left = -100;
+light.shadow.camera.right = 100;
+light.shadow.camera.top = 100;
+light.shadow.camera.bottom = -100;
 light.shadow.camera.near = 1;
-light.shadow.camera.far = 20;
+light.shadow.camera.far = 300;
 
 const controls = new OrbitControls(cam, renderer.domElement);
 controls.enableDamping = true;
